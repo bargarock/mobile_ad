@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>광고하기</title>
+</head>
+<body>
+
+<table border="1" width="100%">
+	<tr><td align="right"><button>조회</button></td></tr>
+</table>
+<table border="1" width="100%">
+	<colgroup>
+		<col width="20%">
+		<col width="20%">
+		<col width="60%">
+	</colgroup>
+	<tr>
+		<td>제휴 APP</td>
+		<td>제휴 매장</td>
+		<td>기타 정보</td>
+		<td>기타 정보</td>
+	</tr>
+	
+<%
+     for(var i=0; i<rows.length; i++)
+     {
+        var adver = rows[i];
+%>
+ <tr>
+        <td name="a"><%=adver.AD_CODE%></td>
+        <td name="b"><%=adver.AD_MANAGE%></td>
+        <td name="c"><%=adver.AD_NAME%></td>
+        <td name="d"><%=adver.AD_TYPE1%></td>
+    </tr>
+<%
+     }
+%>
+</table>
+
+<form action="/write" method="post" >
+    <table border="1">
+    <button type="submit">저장하기</button>
+        <tr>
+            <td>코드</td>
+            <td><input type="text" name="code" id="code" required/></td>
+        </tr>
+        <tr>
+            <td>광고명</td>
+            <td><input type="text" name="title" id="title" required/></td>
+        </tr>
+        <tr>
+            <td>작성자</td>
+            <td><input type="text" name="creator_id" id="creator_id" required/></td>
+        </tr>
+    </table>
+</form>
+
+
+
+<form action="/update" method="post" >
+    <table border="1">
+    <button type="submit">업데이트</button>
+        <tr>
+            <td>코드</td>
+            <td><input type="text" name="code" id="code" value="111"/></td>
+        </tr>
+        <tr>
+            <td>광고명</td>
+            <td><input type="text" name="title" id="title" required/></td>
+        </tr>
+        <tr>
+            <td>작성자</td>
+            <td><input type="text" name="creator_id" id="creator_id" required/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
