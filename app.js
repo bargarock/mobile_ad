@@ -1,5 +1,5 @@
 /**
- * Module dependencies.
+ * Module dependencies.0000
  */
 
 var express = require('express'),routes = require('./routes'), user = require('./routes/user'), http = require('http'), path = require('path'), fs = require;
@@ -42,7 +42,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/users', user.list);
+
 app.get('/top',function(req,res){
 	  res.render(path.join(__dirname+'/views/top.html'));
 });
