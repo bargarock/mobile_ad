@@ -1,5 +1,5 @@
 /**
- * Module dependencies.0000
+ * Module dependencies.
  */
 
 var express = require('express'),routes = require('./routes'), user = require('./routes/user'), http = require('http'), path = require('path'), fs = require;
@@ -21,7 +21,7 @@ var pool = mysql.createPool({
 });
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
@@ -42,8 +42,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-
+app.get('/users', user.list);
+app.get('/login',function(req,res){
+	  res.render(path.join(__dirname+'/views/index.html'));
+});
 app.get('/top',function(req,res){
 	  res.render(path.join(__dirname+'/views/top.html'));
 });
