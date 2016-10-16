@@ -75,6 +75,29 @@ app.get('/setAdver',function(req,res){
 });
 
 
+app.post('/adver_app', function(req,res){
+
+	  var flag = req.body.flag;
+	  var rcode = req.body.rcode;
+	  console.log("update : " + rcode);
+	  pool.getConnection(function (err, connection)
+	  {
+
+	      var sqlForUpdateAdver = "update TB_OFFER set APPROVAL_YN = ? where AD_CODE = ?";
+	        connection.query(sqlForUpdateAdver,[flag, rcode],function(err,result)
+	        {
+	            console.log(result);
+	            if(err) console.error("글 수정 중 에러 발생 err : ",err);
+		          res.redirect('/setCore');
+	            connection.release();
+	        });  
+		  
+		  
+	  });
+	
+});
+
+
 
 //화면저장 로직 처리 POST
 app.post('/write', function(req,res,next){
@@ -127,8 +150,26 @@ pool.getConnection(function (err, connection)
 });
 
 
-app.get('/setCore',function(req,res){
-	  res.render(path.join(__dirname+'/views/setCore.html'));
+app.get('/setCore', function(req,res){
+	pool.getConnection(function (err, connection) {
+        // Use the connection
+		var sqlForSelectList =
+		" SELECT A.AD_CODE AS RCODE, A.APPROVAL_YN, B.AD_CODE, B.AD_NAME, B.AD_CONTENT, B.AD_MSG, " +
+		   "A.OFFER_COMPANY_CODE, IF(A.OFFER_COMPANY_CODE='A001', '강북삼성병원', IF(A.OFFER_COMPANY_CODE='A002', '무궁화요양원', IF(A.OFFER_COMPANY_CODE='A003', '다뺀다 퓌트니스','NONE'))) AS COMNAME, "+
+		   "B.AD_URL, B.AD_TYPE, IF(B.AD_TYPE = 'A01', '건당 4원', IF(B.AD_TYPE = 'A02', '건당 5원', IF(B.AD_TYPE = 'A03', '건당 7원', IF(B.AD_TYPE = 'B01', '건당 100원', " +
+	       "IF(B.AD_TYPE = 'B02', '건당 120원', IF(B.AD_TYPE = 'B03', '건당 150원', 'NONE NAME')))))) AS TYPENAME, " +
+	       "date_format(AD_START_DATE,'%Y-%m-%d') AS AD_START_DATE, date_format(AD_END_DATE,'%Y-%m-%d') AS AD_END_DATE, timestampdiff(month,B.AD_START_DATE,B.AD_END_DATE) AS DIFFMONTH " + 
+		   "FROM TB_OFFER A, TB_AD_DETAIL B " +
+		   "WHERE A.ADD_CODE = B.AD_CODE " ;
+		
+        connection.query(sqlForSelectList, function (err, rows) {
+        	if (err) console.error("err : " + err);
+            console.log("rows : " + JSON.stringify(rows));
+
+          res.render('setCore.html', {rows: rows});
+            connection.release();
+        });
+    }); 
 });
 app.get('/dashboard',function(req,res){
 	  res.render(path.join(__dirname+'/views/dashboard.html'));

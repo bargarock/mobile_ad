@@ -7,8 +7,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>광고승인</title>
+
+
+<script lang="javascript">
+function approval(flag, rcode){
+	
+	document.appForm.flag.value = flag;
+	document.appForm.rcode.value = rcode;
+	document.appForm.submit();
+	
+}
+
+</script>
 </head>
 <body>
+	<form name="appForm" method="post" action="/adver_app">
+	<input type="hidden" name="flag"/>
+	<input type="hidden" name="rcode"/>
 	<br>
 	<img src="../img/healthplustalk.JPG" width="50px" height="50px"> 헬스플러스톡 담당자 김준홍님
 	<br>
@@ -16,11 +31,11 @@
 	<table border="1" width="100%" style="border-collapse: collapse;">
 	<colgroup>
 		<col width="5%">
+		<col width="10%">
 		<col width="15%">
-		<col width="10%">
-		<col width="10%">
-		<col width="10%">
-		<col width="10%">
+		<col width="16%">
+		<col width="7%">
+		<col width="7%">
 		<col width="16%">
 		<col width="7%">
 		<col width="7%">
@@ -40,70 +55,31 @@
 		<td>노출형</td>
 		<td>클릭형</td>
 	</tr>
+	
+	<%
+     for(var i=0; i<rows.length; i++)
+     {
+        var adver = rows[i];
+        var diffmonth = adver.DIFFMONTH;
+        if(diffmonth.length!="") diffmonth += " 개월"; 
+	%>
 	<tr>
-		<td align="center"><img src="../img/samsunghospital.JPG" width="30px" height="30px"></td>
-		<td>
-			강북삼성병원
-		</td>
-		<td>
-			<h3>건강검진 할인 이벤트</h3>
-		</td>
-		<td>
-			부부함께 등록 시 20%할인
-		</td>
-		<td>
-			건당 5원
-		</td>
-		<td>
-			건당 10원
-		</td>
-		<td><input type="text"/>~<input type="text"/></td>
-		<td>1년</td>
-		<td><input type="button" value="승인">  <input type="button" value="거부"></td>
+		<td align="center"><img src="../img/<%=adver.AD_URL%>" width="30px" height="30px"></td>
+		<td>	<%=adver.COMNAME%></td>
+		<td><b><%=adver.AD_NAME%></b></td>
+		<td><%=adver.AD_CONTENT%></td>
+		<td><%=adver.TYPENAME%></td>
+		<td><%=adver.TYPENAME%></td>
+		<td><%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%></td>
+		<td><%=diffmonth%></td>
+		<td><% if(adver.APPROVAL_YN=="" || adver.APPROVAL_YN==null) { %><input type="button" value="승인" onclick="approval('Y', '<%=adver.RCODE%>')">  <input type="button" value="거부" onclick="approval('N','<%=adver.RCODE%>')">
+				<% } else if(adver.APPROVAL_YN=="N") { %> <span style="color: red">취소</span> <% } else if(adver.APPROVAL_YN=="Y") { %><span style="color: blue">제휴중</span> <%}%></td>
 	</tr>
-	<tr>
-		<td align="center"><img src="../img/greencross.JPG" width="30px" height="30px"></td>
-		<td>
-			무궁화 요양원
-		</td>
-		<td>
-			<h3>장기요양 할인 이벤트</h3>
-		</td>
-		<td>
-			장기요양 입원 시 30%할인
-		</td>
-		<td>
-			건당 5원
-		</td>
-		<td>
-			건당 7원
-		</td>
-		<td><input type="text"/>~<input type="text"/></td>
-		<td>6개월</td>
-		<td><input type="button" value="승인">  <input type="button" value="거부"></td>
-	</tr>
-	<tr>
-		<td align="center"><img src="../img/fitness.JPG" width="30px" height="30px"></td>
-		<td>
-			다뺀다 휘트니스
-		</td>
-		<td>
-			<h3>무료PT 행사</h3>
-		</td>
-		<td>
-			1회 무료체험 진행(6개월 등록 시 2회 추가)
-		</td>
-		<td>
-			건당 4원
-		</td>
-		<td>
-			건당 7원
-		</td>
-		<td><input type="text"/>~<input type="text"/></td>
-		<td>6개월</td>
-		<td><input type="button" value="승인">  <input type="button" value="거부"></td>
-	</tr>
+	<%
+	     }
+	%>
+	
 </table>
-
+</form>
 </body>
 </html>

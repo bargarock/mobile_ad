@@ -6,6 +6,42 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+<script src="js/bootstrap-datepicker.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script type='text/javascript'>
+$(function(){
+	$('.input-daterange').datepicker({
+	    autoclose: true,
+	    format: 'yyyy/mm/dd'    	
+	});
+	});
+	
+$(function() {
+    $('#add').click(function() {
+    	 // clone
+        $.trClone = $("#mytable tr:last").clone().html();
+        $.newTr = $("<tr>"+$.trClone+"</tr>");
+        // append
+        $("#mytable").append($.newTr);
+    });
+    $('#del').click(function() {
+    		  var $obj = $("input[name='chk']");
+    		  var checkCount = $obj.size();
+    		  for (var i=0; i<checkCount; i++){
+    		   if($obj.eq(i).is(":checked")){
+    		   $obj.eq(i).parent().parent().remove();
+    		   }
+    		  }
+    });
+});
+	
+</script>
+
+ 
+  
 <title>광고하기</title>
 </head>
 <body>
@@ -13,16 +49,25 @@
 	<img src="../img/samsunghospital.JPG" width="50px" height="50px"> 삼성서울병원 담당자 정진욱님
 	<br>
 	<h1>광고 내용 입력</h1>
-	<table border="1" width="100%" style="border-collapse: collapse;">
+	<table width="100%;" style="border-collapse: collapse;" >
+		<tr align="right">
+			<td>
+				<button type="button" id="add" class="btn btn-success">행추가</button>
+				<button type="button" id="del"  class="btn btn-success">행삭제</button>
+				<button type="button" id="save"  class="btn btn-success">저장</button>
+			</td>
+		</tr>
+	</table>
+	<div style="padding-top: 3px;"></div>
+	<table id="mytable" border="1" width="100%" style="border-collapse: collapse;">
 	<colgroup>
 		<col width="5%">
-		<col width="15%">
 		<col width="10%">
 		<col width="10%">
+		<col width="28%">
 		<col width="10%">
 		<col width="10%">
-		<col width="16%">
-		<col width="7%">
+		<col width="20%">
 		<col width="7%">
 	</colgroup>
 	<tr>
@@ -30,8 +75,7 @@
 		<td rowspan="2">광고업체</td>
 		<td colspan="2">광고내용</td>
 		<td colspan="2">광고단가</td>
-		<td rowspan="2">광고기간</td>
-		<td rowspan="2">제휴기간</td>
+		<td rowspan="2">광고기간(제휴기간)</td>
 		<td rowspan="2">선택</td>
 	</tr>
 	<tr>
@@ -41,15 +85,15 @@
 		<td>클릭형</td>
 	</tr>
 	<tr>
-		<td align="center"><img src="../img/samsunghospital.JPG" width="30px" height="30px"></td>
+		<td align="center"><img src="../img/samsunghospital.JPG" width="30px" height="30px" ></td>
 		<td>
 			강북삼성병원
 		</td>
 		<td>
-			<input type="text"/>
+			<input name="title" type="text" style="width: 99%">
 		</td>
 		<td>
-			<input type="text">
+			<input name="content" type="text" style="width: 99%">
 		</td>
 		<td>
 			<select name="exposure">
@@ -68,9 +112,14 @@
 				<option value="10">건당 10원</option>
 			</select>
 		</td>
-		<td><input type="text"/>~<input type="text"/></td>
-		<td><input type="text"/></td>
-		<td><input type="button" value="저장"></td>
+		<td>
+			<div class="input-daterange input-group" id="datepicker" name="datepicker" >
+			    <input name="from" type="text" class="input-sm form-control" name="from" placeholder="From date" />
+			    <span class="input-group-addon">to</span>
+			    <input name="to" type="text" class="input-sm form-control" name="to" placeholder="To date"/>
+			</div>
+		</td>
+		<td><input type="checkbox"  name="chk"/></td>
 	</tr>
 	</table>
 	<br>
