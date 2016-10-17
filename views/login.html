@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+*{ margin:0;padding:0;}
+.container{width:1024px;height:768px; background:url(/img/login.jpg); background-size:cover; background-position:center center;}
+</style>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -8,28 +13,39 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Login</title>
 </head>
-<body >
+<body>
 
-
-<form name ="login" action="login" style="width: 846; height : 620px;" >
+<form name ="login" action="login" style="width: 1024; height : 768px;">
 <div class="container" style="width: 100%; height: 100%;">
-	<table style="width: 100%; height: 100%;" >
+	<table style="width: 100%; height: 78%;"  border= 0>
 		<tr>
-			<td align="right">
- 				 <img src="/img/CommunityMaster.png"  width="304" height="236">
-			</td>
-			<td width="50%">
-				 <button type="button" class="btn btn-primary">Publisher</button>
-				  <button type="button" class="btn btn-primary">Advertiser</button>
-				  <br/>
-				  <label for="inputdefault" style="margin-top: 15px;">사용자</label>
-				  <input class="form-control" id="inputdefault" type="text" style="width: 93%" value="admin@miracom.com">
-				  <label for="inputdefault" style="margin-top: 5px;">패스워드</label>
-				  <input class="form-control" id="inputdefault" type="password" style="width: 93%" value="*********">
-				  <div class="checkbox">
-				    <label><input type="checkbox"> Remember me</label>
-				  </div>
-				  <button type="submit" class="btn btn-success" style="margin-top: 10px; width: 93%;" >접속</button>
+			<td width="100%" style="padding-left: 130px;">
+				  <table style="width: 30%;" border=0>
+				 		    <tr height="80px;">
+				 		    	<td><label for="inputdefault"><p style="color: white; padding-top: 20px;">&nbsp;</p></label></td>
+								<td>
+									<button type="button" class="btn btn-primary">Publisher</button>
+									<button type="button" class="btn btn-primary">Advertiser</button>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="inputdefault"><p style="color: white;">사용자</p></label></td>
+								<td align="right"><input class="form-control" id="inputdefault" type="text" value="admin@miracom.com"></td>
+							</tr>
+							<tr>
+								<td><label for="inputdefault" style="margin-top: 5px;"><p style="color: white">패스워드</p></label></td>
+								<td align="right"><input class="form-control" id="inputdefault" type="password" value="*********"></td>
+							</tr>
+							<tr>
+								<td><div class="checkbox">
+									    <label><input type="checkbox"><p style="color: white"> Remember me</p></label>
+									  </div>
+							    </td>
+								<td align="right"><button type="submit" class="btn btn-success" style="width: 100%; " >접속</button></td>
+							</tr>
+				  </table> 
+				  
+				  
 			</td>
 		</tr>
 	</table>

@@ -26,6 +26,13 @@ $(function() {
         $.newTr = $("<tr>"+$.trClone+"</tr>");
         // append
         $("#mytable").append($.newTr);
+        
+        $('.input-daterange').each(function(){
+            $(this).datepicker({
+        	    autoclose: true,
+        	    format: 'yyyy/mm/dd'    	
+        	});
+        });
     });
     $('#del').click(function() {
     		  var $obj = $("input[name='chk']");
