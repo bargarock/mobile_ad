@@ -46,14 +46,20 @@ app.get('/users', user.list);
 app.get('/login',function(req,res){
 	  res.render(path.join(__dirname+'/views/index.html'));
 });
+
 app.get('/top',function(req,res){
 	  res.render(path.join(__dirname+'/views/top.html'));
 });
+
 app.get('/intro',function(req,res){
 	  res.render(path.join(__dirname+'/views/intro.html'));
 });
+
 app.get('/setAdver',function(req,res){
-	
+
+	  res.render(path.join(__dirname+'/views/setAdver.html'));
+    
+    /*
 	pool.getConnection(function (err, connection) {
         // Use the connection
 		var sqlForSelectList = "SELECT AD_CODE , AD_MANAGE, AD_NAME, AD_TYPE1,  " +
@@ -70,7 +76,68 @@ app.get('/setAdver',function(req,res){
             connection.release();
         });
     });
+*/
+	
+});
 
+
+app.post('/adver_reg', function(req,res){
+
+	  var company = req.body.company;
+	  var title = req.body.title;
+	  var content = req.body.content;
+	  var exposure = req.body.exposure;
+	  var execute = req.body.execute;
+	  var from = req.body.from;
+	  var to = req.body.to;
+	  var chk = req.body.chk;
+	  var AppCompany = "C001"; //앱 관리 회사 (헬스플러스톡)
+
+	  pool.getConnection(function (err, connection)
+	  {
+	      // Use the connection
+		  var sqlMaxAdCode = "select if(concat('A001',lpad(CONVERT(max(substring(ad_code,5,7)), UNSIGNED)+1,2,'0')) is null, 'A001',concat('A001',lpad(CONVERT(max(substring(ad_code,5,7)), UNSIGNED)+1,2,'0'))) as M_AD_CODE from TB_AD_DETAIL where AD_CODE LIKE 'A001%' ";
+		  var adUrl = "samsunghospital.JPG";
+		  
+		  //MAXADCODE채번
+	      connection.query(sqlMaxAdCode, function (err, rows) {
+	        	if (err) console.error("err : " + err);
+	        	var maxAdCode = rows[0].M_AD_CODE;
+	        	
+	        	//광고하기테이블(광고detail) 저장
+	        	var sqlForInsertAdver = "insert into TB_AD_DETAIL(AD_CODE, AD_NAME, AD_CONTENT," +
+	        										"AD_MSG, AD_URL, AD_TYPE, AD_START_DATE, AD_END_DATE) values (?,?,?,?,?,?,?,?)";
+	    	    var datas = [maxAdCode, title, content, content, adUrl, exposure, from,to];
+	        	connection.query(sqlForInsertAdver, datas, function (err, rows) {
+	                if (err) console.error("err : " + err);
+	        	});
+	        	
+	        	
+	        	//MAX제휴코드
+	        	var sqlMaxRCode = "select if(concat('R',lpad(CONVERT(max(substring(ad_code,2,4)), UNSIGNED)+1,3,'0')) is null, 'R001', concat('R',lpad(CONVERT(max(substring(ad_code,2,4)), UNSIGNED)+1,3,'0'))) as RCODE from TB_OFFER  ";
+	        	var maxRCode = "";
+	            connection.query(sqlMaxRCode, function (err, rows) {
+	            	if (err) console.error("err : " + err);
+	            	maxRCode = rows[0].RCODE;
+	            	
+	            	console.log("maxRCode::"  + maxRCode);
+	            	//제휴테이블 (TB_OFFER) 저장
+	                var sqlForInsertsetCore = " insert into TB_OFFER(AD_CODE, OFFER_COMPANY_CODE, TARGET_COMPANY_CODE" +
+	        				", OFFER_DATE, ADD_CODE, APPROVAL_YN, APPROVAL_DATE)	values (?,?,?,?,?,?,?)";
+	        		datas = [maxRCode, company, AppCompany, "", maxAdCode, "", ""];
+	        		
+	        		connection.query(sqlForInsertsetCore, datas, function (err, rows) {
+	        			if (err) console.error("err : " + err);
+	        		});
+	            });
+	        	
+	      });
+	            	
+
+    	connection.release();
+        res.redirect('/setAdver');
+        
+	  });
 	
 });
 
@@ -83,7 +150,7 @@ app.post('/adver_app', function(req,res){
 	  pool.getConnection(function (err, connection)
 	  {
 
-	      var sqlForUpdateAdver = "update TB_OFFER set APPROVAL_YN = ? where AD_CODE = ?";
+	      var sqlForUpdateAdver = "update TB_OFFER set APPROVAL_YN = ? , APPROVAL_DATE = now() where AD_CODE = ?";
 	        connection.query(sqlForUpdateAdver,[flag, rcode],function(err,result)
 	        {
 	            console.log(result);

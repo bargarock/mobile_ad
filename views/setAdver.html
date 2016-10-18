@@ -52,8 +52,10 @@ $(function() {
 <title>광고하기</title>
 </head>
 <body>
+	<form name="adver" method="post" action="/adver_reg">
 	<br>
 	<img src="../img/samsunghospital.JPG" width="50px" height="50px"> 삼성서울병원 담당자 정진욱님
+	<input type="hidden" name="company" id="company" value="A001"/>
 	<br>
 	<h1>광고 내용 입력</h1>
 	<table width="100%;" style="border-collapse: collapse;" >
@@ -61,7 +63,7 @@ $(function() {
 			<td>
 				<button type="button" id="add" class="btn btn-success">행추가</button>
 				<button type="button" id="del"  class="btn btn-success">행삭제</button>
-				<button type="button" id="save"  class="btn btn-success">저장</button>
+				<button type="submit" id="save"  class="btn btn-success" >저장</button>
 			</td>
 		</tr>
 	</table>
@@ -97,36 +99,35 @@ $(function() {
 			강북삼성병원
 		</td>
 		<td>
-			<input name="title" type="text" style="width: 99%">
+			<input name="title" type="text" style="width: 99%" value="강북삼성병원이벤트">
 		</td>
 		<td>
-			<input name="content" type="text" style="width: 99%">
+			<input name="content" type="text" style="width: 99%" value="무료예방접종">
 		</td>
 		<td>
 			<select name="exposure">
 				<option value="">금액 선택</option>
-				<option value="3">건당 3원</option>
-				<option value="5">건당 5원</option>
-				<option value="7">건당 7원</option>
-				<option value="10">건당 10원</option>
+				<option value="A01" selected="selected">건당 4원</option>
+				<option value="A02">건당 5원</option>
+				<option value="A03">건당 7원</option>
 			</select>
 		</td>
 		<td>
 			<select name="execute">
 				<option value="">금액 선택</option>
-				<option value="5">건당 5원</option>
-				<option value="7">건당 7원</option>
-				<option value="10">건당 10원</option>
+				<option value="B01" selected="selected">건당 100원</option>
+				<option value="B02">건당 120원</option>
+				<option value="B03">건당 150원</option>
 			</select>
 		</td>
 		<td>
 			<div class="input-daterange input-group" id="datepicker" name="datepicker" >
-			    <input name="from" type="text" class="input-sm form-control" name="from" placeholder="From date" />
+			    <input name="from" type="text" class="input-sm form-control" name="from" placeholder="From date" value="2016/10/13"/>
 			    <span class="input-group-addon">to</span>
-			    <input name="to" type="text" class="input-sm form-control" name="to" placeholder="To date"/>
+			    <input name="to" type="text" class="input-sm form-control" name="to" placeholder="To date" value="2017/10/13"/>
 			</div>
 		</td>
-		<td><input type="checkbox"  name="chk"/></td>
+		<td><input type="checkbox"  name="chk" checked="checked"></td>
 	</tr>
 	</table>
 	<br>
@@ -148,76 +149,7 @@ $(function() {
             <td width="150px"><input type="checkbox"/></td>
         </tr>
     </table>
-<table border="1" width="100%">
-	<tr><td align="right"><button>조회</button></td></tr>
-</table>
-<table border="1" width="100%">
-	<colgroup>
-		<col width="20%">
-		<col width="20%">
-		<col width="60%">
-	</colgroup>
-	<tr>
-		<td>제휴 APP</td>
-		<td>제휴 매장</td>
-		<td>기타 정보</td>
-		<td>기타 정보</td>
-	</tr>
-	
-<%
-     for(var i=0; i<rows.length; i++)
-     {
-        var adver = rows[i];
-%>
- <tr>
-        <td name="a"><%=adver.AD_CODE%></td>
-        <td name="b"><%=adver.AD_MANAGE%></td>
-        <td name="c"><%=adver.AD_NAME%></td>
-        <td name="d"><%=adver.AD_TYPE1%></td>
-    </tr>
-<%
-     }
-%>
-</table>
-
-<form action="/write" method="post" >
-    <table border="1">
-    <button type="submit">저장하기</button>
-        <tr>
-            <td>코드</td>
-            <td><input type="text" name="code" id="code" required/></td>
-        </tr>
-        <tr>
-            <td>광고명</td>
-            <td><input type="text" name="title" id="title" required/></td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td><input type="text" name="creator_id" id="creator_id" required/></td>
-        </tr>
-    </table>
-</form>
-
-
-
-<form action="/update" method="post" >
-    <table border="1">
-    <button type="submit">업데이트</button>
-        <tr>
-            <td>코드</td>
-            <td><input type="text" name="code" id="code" value="111"/></td>
-        </tr>
-        <tr>
-            <td>광고명</td>
-            <td><input type="text" name="title" id="title" required/></td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td><input type="text" name="creator_id" id="creator_id" required/></td>
-        </tr>
-    </table>
     
 </form>
-
 </body>
 </html>
