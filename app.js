@@ -48,7 +48,7 @@ app.get('/login',function(req,res){
 });
 
 app.get('/top',function(req,res){
-	  res.render(path.join(__dirname+'/views/top.html'));
+	  res.render(path.join(__dirname+'/views/top3.html'));
 });
 
 app.get('/intro',function(req,res){
