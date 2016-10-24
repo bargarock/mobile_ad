@@ -3,6 +3,7 @@ body{
 }
 .navbar, .dropdown-menu{
 background:rgba(177,219,78,210);
+height:150px;
 border: none;
 
 }
