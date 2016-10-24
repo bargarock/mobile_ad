@@ -60,8 +60,9 @@ function approval(flag, rcode){
      for(var i=0; i<rows.length; i++)
      {
         var adver = rows[i];
-        var diffmonth = adver.DIFFMONTH;
-        if(diffmonth.length!="") diffmonth += " 개월"; 
+        var diffmonth = adver.DIFFMONTH+""; 
+        if(diffmonth!="null" && diffmonth.length!="") diffmonth += " 개월";
+        else  diffmonth = "-";
 	%>
 	<tr>
 		<td align="center"><img src="../img/<%=adver.AD_URL%>" width="30px" height="30px"></td>
