@@ -6,7 +6,7 @@ body{
 }
 
 #categoryDiv{
-	width: 30%;
+	width: 29%;
 	background: #F7F7F9;
 	border: #959595 1px solid;
 	border-top-left-radius: 10px 10px;
@@ -19,7 +19,7 @@ body{
 }
 
 .categoryAppDiv{
-	width: 69%;
+	width: 68%;
 	background: #F7F7F9;
 	border: #959595 1px solid;
 	border-top-left-radius: 10px 10px;
