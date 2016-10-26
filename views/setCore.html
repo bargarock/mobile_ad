@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/setAdver.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>광고승인</title>
@@ -27,7 +28,8 @@ function approval(flag, rcode){
 	<br>
 	<img src="../img/healthplustalk.jpg" width="50px" height="50px"> 헬스플러스톡 담당자 김준홍님
 	<br>
-	<h1>제안 받은 광고 리스트</h1>
+	<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제안 받은 광고 리스트</h1>
+	<hr>
 	<table border="1" width="100%" style="border-collapse: collapse;">
 	<colgroup>
 		<col width="5%">
@@ -63,6 +65,11 @@ function approval(flag, rcode){
         var diffmonth = adver.DIFFMONTH+""; 
         if(diffmonth!="null" && diffmonth.length!="") diffmonth += " 개월";
         else  diffmonth = "-";
+        
+        var flag = "";
+         if(adver.APPROVAL_YN=="" || adver.APPROVAL_YN==null ){ flag="N" }
+         else if( adver.APPROVAL_YN=="N"){ flag="C" }
+         else if( adver.APPROVAL_YN=="Y"){ flag="Y" }
 	%>
 	<tr>
 		<td align="center"><img src="../img/<%=adver.AD_URL%>" width="30px" height="30px"></td>
@@ -71,10 +78,11 @@ function approval(flag, rcode){
 		<td><%=adver.AD_CONTENT%></td>
 		<td><%=adver.TYPENAME%></td>
 		<td><%=adver.TYPENAME%></td>
-		<td><%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%></td>
+		<td><%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%> <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %></td>
 		<td><%=diffmonth%></td>
-		<td><% if(adver.APPROVAL_YN=="" || adver.APPROVAL_YN==null) { %><input type="button" value="승인" onclick="approval('Y', '<%=adver.RCODE%>')">  <input type="button" value="거부" onclick="approval('N','<%=adver.RCODE%>')">
-				<% } else if(adver.APPROVAL_YN=="N") { %> <span style="color: red">취소</span> <% } else if(adver.APPROVAL_YN=="Y") { %><span style="color: blue">제휴중</span> <%}%></td>
+		<td><% if(flag == "N") { %><button type="button" class="btn btn-success" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
+													 <button type="button" class="btn btn-danger" onclick="approval('N', '<%=adver.RCODE%>')"">제휴거절</button>
+				<% } else if(flag=="Y" || flag=="C" ) { %> <button type="button" class="btn btn-warning" onclick="approval('', '<%=adver.RCODE%>')"">제휴처리취소</button><% }%></td>
 	</tr>
 	<%
 	     }
