@@ -45,7 +45,7 @@ $(function() {
   
 <title>광고하기</title>
 </head>
-<body>
+<body style="margin-left: 20%; margin-right: 20%">
 	<form name="adver" method="post" action="/adver_reg">
 	<input type="hidden" name="company" id="company" value="A001"/>
 	<br>
@@ -53,212 +53,172 @@ $(function() {
 		<img src="../img/samsunghospital.JPG" width="50px" height="50px"> 삼성서울병원 담당자 정진욱님
 	</div>
 	<br>
-	<h1><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;광고 내용 입력</h1>
-	<hr>
-	<table width="100%;" style="border-collapse: collapse;" >
-		<tr align="right">
-			<td>
-				<button type="button" id="add" class="btn btn-success">행추가</button>
-				<button type="button" id="del"  class="btn btn-success">행삭제</button>				
-				<button type="submit" id="save"  class="btn btn-success" >저장</button>
-			</td>
-		</tr>
-	</table>
-	<div style="padding-top: 3px;"></div>
-	<table id="mytable" border="1" width="100%" style="border-collapse: collapse;">
-	<colgroup>
-		<col width="5%">
-		<col width="10%">
-		<col width="10%">
-		<col width="28%">
-		<col width="10%">
-		<col width="10%">
-		<col width="20%">
-		<col width="7%">
-	</colgroup>
-	<tr>
-		<td rowspan="2"></td>
-		<td rowspan="2">광고업체</td>
-		<td colspan="2">광고내용</td>
-		<td colspan="2">광고단가</td>
-		<td rowspan="2">광고기간(제휴기간)</td>
-		<td rowspan="2">선택</td>
-	</tr>
-	<tr>
-		<td>Title</td>
-		<td>내용</td>
-		<td>노출형</td>
-		<td>클릭형</td>
-	</tr>
-	<tr>
-		<td align="center"><img src="../img/samsunghospital.JPG" width="30px" height="30px" ></td>
-		<td>
-			강북삼성병원
-		</td>
-		<td>
-			<input name="title" type="text" style="width: 99%" value="광고 Title 입니다.">
-		</td>
-		<td>
-			<input name="content" type="text" style="width: 99%" value = "광고  Content 입니다.">
-		</td>
-		<td>
-			<select name="exposure">
-				<option value="">금액 선택</option>
-				<option value="A01" selected="selected">건당 4원</option>
-				<option value="A02">건당 5원</option>
-				<option value="A03">건당 7원</option>
-			</select>
-		</td>
-		<td>
-			<select name="execute">
-				<option value="">금액 선택</option>
-				<option value="B01" selected="selected">건당 100원</option>
-				<option value="B02">건당 120원</option>
-				<option value="B03">건당 150원</option>
-			</select>
-		</td>
-		<td>
-			<div class="input-daterange input-group" id="datepicker" name="datepicker" >
-			    <input name="from" type="text" class="input-sm form-control" name="from" placeholder="From date" />
-			    <span class="input-group-addon">to</span>
-			    <input name="to" type="text" class="input-sm form-control" name="to" placeholder="To date"/>
+	
+	<div id="adInformationDiv">
+		<h1><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;광고 내용 입력</h1>
+		<hr>
+		
+		<div id="categoryDiv">
+			<label>광고내용<br><p>광고 하려는 내용을 입력해 주세요</p></label>
+			<h4><span class="glyphicon glyphicon-picture" aria-hidden="true"> 사진첨부</span></h4>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">제목</span>
+				<input type="text" class="form-control" placeholder="광고 제목 입력" aria-describedby="basic-addon1">
 			</div>
-		</td>
-		<td><input type="checkbox"  name="chk"/></td>
-	</tr>
-	</table>
-	<br>
-	<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제휴 앱 선택</h1>
-	<hr>
-	<div id="categoryDiv">
-		<h3><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp;&nbsp;카테고리</h3>
-		<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-			<button type="button" class="btn btn-default" name="category" value="건강" onclick="showAppList(value);" style="width: 250px;">건강</button>
-			<button type="button" class="btn btn-default" name="category" value="SNS" onclick="showAppList(value);">SNS</button>
-			<button type="button" class="btn btn-default" name="category" value="쇼핑" onclick="showAppList(value);">쇼핑</button>
-			<button type="button" class="btn btn-default" name="category" value="게임" onclick="showAppList(value);">게임</button>
-			<button type="button" class="btn btn-default" name="category" value="여행" onclick="showAppList(value);">여행</button>
-			<button type="button" class="btn btn-default" name="category" value="음악" onclick="showAppList(value);">음악</button>
-			<button type="button" class="btn btn-default" name="category" value="영화" onclick="showAppList(value);">영화</button>
-			<button type="button" class="btn btn-default" name="category" value="배달" onclick="showAppList(value);">배달</button>
-			<button type="button" class="btn btn-default" name="category" value="금융" onclick="showAppList(value);">금융</button>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">내용</span>
+				<input type="text" class="form-control" placeholder="광고 내용 입력" aria-describedby="basic-addon1">
+			</div>
+			
+			<label>광고단가</label>
+			<label>광고기간</label>
+		</div>
+		<div class="categoryAppDiv">
+			<label>미리보기</label>
+			<div class="media-left">
+				<img class="thumbnail" src="../img/samsunghospital.JPG" width="100px" height="100px">
+	        </div>
+	        <div class="media-body">
+	          <h4 class="media-heading">Media heading</h4>
+	          <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+	        </div>
 		</div>
 	</div>
-	<div class="categoryAppDiv" id="healthDiv">
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/healthplustalk.jpg" alt="...">
-	      <div class="caption">
-	        <h3>헬스플러스톡</h3>
-	        <p><input type="checkbox" id="appCheckBox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/googlefitness.jpg" alt="...">
-	      <div class="caption">
-	        <h3>Google Fitness</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/nikerun.jpg" alt="...">
-	      <div class="caption">
-	        <h3>Nike Run</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/Shealth.jpg" alt="...">
-	      <div class="caption">
-	        <h3>S헬스</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	
-	<div class="categoryAppDiv" id="snsDiv">
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/cacao.jpg" alt="...">
-	      <div class="caption">
-	        <h3>카카오톡</h3>
-	        <p><input type="checkbox" id="appCheckBox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/facebook.jpg" alt="...">
-	      <div class="caption">
-	        <h3>Facebook</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/snapchat.jpg" alt="...">
-	      <div class="caption">
-	        <h3>Snap chat</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/instagram.jpg" alt="...">
-	      <div class="caption">
-	        <h3>Instagram</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	
-	<div class="categoryAppDiv" id="shopDiv">
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/11street.jpg" alt="...">
-	      <div class="caption">
-	        <h3>11번가</h3>
-	        <p><input type="checkbox" id="appCheckBox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/auction.jpg" alt="...">
-	      <div class="caption">
-	        <h3>옥션</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/coupang.jpg" alt="...">
-	      <div class="caption">
-	        <h3>쿠팡</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-3">
-	    <div class="thumbnail">
-	      <img src="../img/gmarket.png" alt="...">
-	      <div class="caption">
-	        <h3>G마켓</h3>
-	        <p><input type="checkbox"/></p>
-	      </div>
-	    </div>
-	  </div>
+
+	<br>
+	<div id="appSelectDiv" style="float: left">
+		<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제휴 앱 선택</h1>
+		<hr>
+		<div id="categoryDiv">
+			<h3><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp;&nbsp;카테고리</h3>
+			<div class="well center-block">
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="건강" onclick="showAppList(value);">건강</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="SNS" onclick="showAppList(value);">SNS</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="쇼핑" onclick="showAppList(value);">쇼핑</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="게임" onclick="showAppList(value);">게임</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="여행" onclick="showAppList(value);">여행</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="음악" onclick="showAppList(value);">음악</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="영화" onclick="showAppList(value);">영화</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="배달" onclick="showAppList(value);">배달</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="금융" onclick="showAppList(value);">금융</button>
+			</div>
+		</div>
+		<div class="categoryAppDiv" id="healthDiv">
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/healthplustalk.jpg" alt="...">
+		      <div class="caption">
+		        <h3>헬스플러스톡</h3>
+		        <p><input type="checkbox" id="appCheckBox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/googlefitness.jpg" alt="...">
+		      <div class="caption">
+		        <h3>Google Fitness</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/nikerun.jpg" alt="...">
+		      <div class="caption">
+		        <h3>Nike Run</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/Shealth.jpg" alt="...">
+		      <div class="caption">
+		        <h3>S헬스</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="categoryAppDiv" id="snsDiv">
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/cacao.jpg" alt="...">
+		      <div class="caption">
+		        <h3>카카오톡</h3>
+		        <p><input type="checkbox" id="appCheckBox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/facebook.jpg" alt="...">
+		      <div class="caption">
+		        <h3>Facebook</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/snapchat.jpg" alt="...">
+		      <div class="caption">
+		        <h3>Snap chat</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/instagram.jpg" alt="...">
+		      <div class="caption">
+		        <h3>Instagram</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="categoryAppDiv" id="shopDiv">
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/11street.jpg" alt="...">
+		      <div class="caption">
+		        <h3>11번가</h3>
+		        <p><input type="checkbox" id="appCheckBox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/auction.jpg" alt="...">
+		      <div class="caption">
+		        <h3>옥션</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/coupang.jpg" alt="...">
+		      <div class="caption">
+		        <h3>쿠팡</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+		      <img src="../img/gmarket.png" alt="...">
+		      <div class="caption">
+		        <h3>G마켓</h3>
+		        <p><input type="checkbox"/></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</div>
 
 <script type="text/javascript">
