@@ -30,32 +30,27 @@ function approval(flag, rcode){
 	<br>
 	<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제안 받은 광고 리스트</h1>
 	<hr>
-	<table border="1" width="100%" style="border-collapse: collapse;">
+	<table border="0" width="100%" style="border-collapse: collapse;">
 	<colgroup>
 		<col width="5%">
 		<col width="10%">
 		<col width="15%">
-		<col width="16%">
-		<col width="7%">
-		<col width="7%">
+		<col width="13%">
 		<col width="15%">
 		<col width="6%">
-		<col width="9%">
+		<col width="12%">
 	</colgroup>
-	<tr>
+	<tr  style="background-color: #B1DB4E;">
 		<td rowspan="2"></td>
-		<td rowspan="2">광고업체</td>
-		<td colspan="2">광고내용</td>
-		<td colspan="2">광고단가</td>
-		<td rowspan="2">광고기간</td>
-		<td rowspan="2">제휴기간</td>
-		<td rowspan="2">선택</td>
+		<td rowspan="2" align="center"><h5><b><u>광고업체</h5></td>
+		<td colspan="2" align="center" ><h5><b><u>광고내용</h5></td>
+		<td rowspan="2" align="center" ><h5><b><u>광고기간</h5></td>
+		<td rowspan="2" align="center" ><h5><b><u>제휴기간</h5></td>
+		<td rowspan="2" align="center" ><h5><b><u>선택</h5></td>
 	</tr>
-	<tr>
-		<td>Title</td>
-		<td>내용</td>
-		<td>노출형</td>
-		<td>클릭형</td>
+	<tr  style="background-color: #B1DB4E">
+		<td align="center" ><h5><b><u>Title</h5></td>
+		<td align="center" ><h5><b><u>내용</h5></td>
 	</tr>
 	
 	<%
@@ -70,17 +65,22 @@ function approval(flag, rcode){
          if(adver.APPROVAL_YN=="" || adver.APPROVAL_YN==null ){ flag="N" }
          else if( adver.APPROVAL_YN=="N"){ flag="C" }
          else if( adver.APPROVAL_YN=="Y"){ flag="Y" }
+         
+         var img = "";
+         var adCode = adver.AD_CODE.substring(0,4);
+         console.log(adCode);
+         if(adCode=="A001") img = "samsunghospital.JPG";
+         else if(adCode=="A002") img = "greencross.JPG";
+         else if(adCode=="A003") img = "fitness.JPG";
 	%>
 	<tr>
-		<td align="center"><img src="../img/<%=adver.AD_URL%>" width="30px" height="30px"></td>
-		<td>	<%=adver.COMNAME%></td>
+		<td align="center"><img src="../img/<%=img%>" width="30px" height="30px"></td>
+		<td align="center"><%=adver.COMNAME%></td>
 		<td><b><%=adver.AD_NAME%></b></td>
 		<td><%=adver.AD_CONTENT%></td>
-		<td><%=adver.TYPENAME%></td>
-		<td><%=adver.TYPENAME%></td>
-		<td><%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%> <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %></td>
-		<td><%=diffmonth%></td>
-		<td><% if(flag == "N") { %><button type="button" class="btn btn-success" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
+		<td><%=adver.AD_START_DATE%> <br>~ <%=adver.AD_END_DATE%> <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %></td>
+		<td align="center"><%=diffmonth%></td>
+		<td align="center"><% if(flag == "N") { %><button type="button" class="btn btn-success" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
 													 <button type="button" class="btn btn-danger" onclick="approval('N', '<%=adver.RCODE%>')"">제휴거절</button>
 				<% } else if(flag=="Y" || flag=="C" ) { %> <button type="button" class="btn btn-warning" onclick="approval('', '<%=adver.RCODE%>')"">제휴처리취소</button><% }%></td>
 	</tr>

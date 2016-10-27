@@ -16,7 +16,7 @@ border: none;
   background: none;
 }
 .navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
- color: #fff;
+ color: #204D74;
 }
 .dropdown-menu{
       -webkit-box-shadow: none;
