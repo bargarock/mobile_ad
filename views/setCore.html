@@ -30,7 +30,9 @@ function approval(flag, rcode){
 	<br>
 	<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제안 받은 광고 리스트</h1>
 	<hr>
-	<table border="0" width="100%" style="border-collapse: collapse;">
+	
+	<div id="categoryCoreDiv">
+	<table width="100%" border="1"  style="border: 1px;border-color: #204D74;">
 	<colgroup>
 		<col width="5%">
 		<col width="10%">
@@ -43,7 +45,7 @@ function approval(flag, rcode){
 	<tr  style="background-color: #B1DB4E;">
 		<td rowspan="2"></td>
 		<td rowspan="2" align="center"><h5><b><u>광고업체</h5></td>
-		<td colspan="2" align="center" ><h5><b><u>광고내용</h5></td>
+		<td colspan="2" align="center"  style="padding-right: 100px;"><h5><b><u>광고내용</u></h5></td>
 		<td rowspan="2" align="center" ><h5><b><u>광고기간</h5></td>
 		<td rowspan="2" align="center" ><h5><b><u>제휴기간</h5></td>
 		<td rowspan="2" align="center" ><h5><b><u>선택</h5></td>
@@ -73,12 +75,12 @@ function approval(flag, rcode){
          else if(adCode=="A002") img = "greencross.JPG";
          else if(adCode=="A003") img = "fitness.JPG";
 	%>
-	<tr>
+	<tr style="height: 150px;">
 		<td align="center"><img src="../img/<%=img%>" width="30px" height="30px"></td>
 		<td align="center"><%=adver.COMNAME%></td>
-		<td><b><%=adver.AD_NAME%></b></td>
-		<td><%=adver.AD_CONTENT%></td>
-		<td><%=adver.AD_START_DATE%> <br>~ <%=adver.AD_END_DATE%> <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %></td>
+		<td style="padding-left: 5px;"><b><%=adver.AD_NAME%></b></td>
+		<td style="padding-left: 5px;"><%=adver.AD_CONTENT%></td>
+		<td style="padding-left: 5px;"><%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%> <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %></td>
 		<td align="center"><%=diffmonth%></td>
 		<td align="center"><% if(flag == "N") { %><button type="button" class="btn btn-success" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
 													 <button type="button" class="btn btn-danger" onclick="approval('N', '<%=adver.RCODE%>')"">제휴거절</button>
@@ -89,6 +91,7 @@ function approval(flag, rcode){
 	%>
 	
 </table>
+</div>
 </form>
 </body>
 </html>
