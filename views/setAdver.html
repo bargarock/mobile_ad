@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
@@ -46,7 +45,7 @@ $(function() {
   
 <title>광고하기</title>
 </head>
-<body style="margin-left: 20%; margin-right: 20%">
+<body style="margin-left: 15%; margin-right: 15%">
 	<form name="adver" method="post" action="/adver_reg">
 	<input type="hidden" name="company" id="company" value="A001"/>
 	<br>
@@ -60,19 +59,33 @@ $(function() {
 		<hr>
 		
 		<div id="categoryDiv">
-			<label>광고내용<br><p>광고 하려는 내용을 입력해 주세요</p></label>
-			<h4><span class="glyphicon glyphicon-picture" aria-hidden="true"> 사진첨부</span></h4>
+			<label>광고내용</label>
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">제목</span>
 				<input type="text" class="form-control" placeholder="광고 제목 입력" aria-describedby="basic-addon1">
 			</div>
+			<br>
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">내용</span>
 				<input type="text" class="form-control" placeholder="광고 내용 입력" aria-describedby="basic-addon1">
 			</div>
-			
+			<br>
 			<label>광고단가</label>
+			<div id="selectbox">
+			    <select id="ex_select">
+			        <option selected>단가 선택</option>
+			        <option>1개월 12만원</option>
+			        <option>3개월 30만원</option>
+			        <option>6개월 48만원</option>
+			    </select>
+			</div>
+			<br>
 			<label>광고기간</label>
+			<div class="input-daterange input-group" id="datepicker" name="datepicker" >
+			    <input name="from" type="date" class="input-sm form-control" name="from" placeholder="From date" />
+			    <span class="input-group-addon">to</span>
+			    <input name="to" type="date" class="input-sm form-control" name="to" placeholder="To date"/>
+			</div>
 		</div>
 		<div class="categoryAppDiv">
 			<label>미리보기</label>
@@ -83,9 +96,13 @@ $(function() {
 	          <h4 class="media-heading">Media heading</h4>
 	          <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
 	        </div>
+	        <div>
+	        	<img src="../img/healthcheck.jpg" id="myimg">
+	        </div>
 		</div>
 	</div>
 
+	<br>
 	<br>
 	<div id="appSelectDiv" style="float: left">
 		<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제휴 앱 선택</h1>
