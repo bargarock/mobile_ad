@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="/css/setAdver.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/setCore.js"></script>
+  <link rel="stylesheet" href="/css/setCore.css">
 <title>광고승인</title>
 
 
@@ -21,16 +23,95 @@ function approval(flag, rcode){
 
 </script>
 </head>
-<body>
+<body style="margin-left: 15%; margin-right: 15%">
 	<form name="appForm" method="post" action="/adver_app">
 	<input type="hidden" name="flag"/>
 	<input type="hidden" name="rcode"/>
 	<br>
-	<img src="../img/healthplustalk.jpg" width="50px" height="50px"> 헬스플러스톡 담당자 김준홍님
+	<div id="userdiv">
+		<img src="../img/samsunghospital.jpg" width="50px" height="50px"> 헬스플러스톡 담당자 김준홍님
+	</div>
 	<br>
 	<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제안 받은 광고 리스트</h1>
 	<hr>
 	
+
+<div class="container">
+	<div class="row">
+
+		<section class="content">
+			<div class="col-md-8 col-md-offset-0">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-filter" data-target="A001">강북삼성병원</button>
+								<button type="button" class="btn btn-warning btn-filter" data-target="A002">무궁화요양원</button>
+								<button type="button" class="btn btn-danger btn-filter" data-target="A003">다뺀다퓌트니스</button>
+								<button type="button" class="btn btn-default btn-filter" data-target="all">전체</button>
+							</div>
+						</div>
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+
+	<%
+     for(var i=0; i<rows.length; i++)
+     {
+        var adver = rows[i];
+        var diffmonth = adver.DIFFMONTH+""; 
+        if(diffmonth!="null" && diffmonth.length!="") diffmonth += "M";
+        else  diffmonth = "-";
+        
+        var flag = "";
+         if(adver.APPROVAL_YN=="" || adver.APPROVAL_YN==null ){ flag="N" }
+         else if( adver.APPROVAL_YN=="N"){ flag="C" }
+         else if( adver.APPROVAL_YN=="Y"){ flag="Y" }
+         
+         var img = "";
+         var adCode = adver.AD_CODE.substring(0,4);
+         console.log(adCode);
+         if(adCode=="A001") img = "samsunghospital.jpg";
+         else if(adCode=="A002") img = "greencross.jpg";
+         else if(adCode=="A003") img = "fitness.jpg";
+	%> 
+								
+									<tr data-status="<%=adver.OFFER_COMPANY_CODE%>">
+										
+										<!-- 
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox1">
+												<label for="checkbox1"></label>
+											</div>
+										</td>
+											-->
+										<td align="center">
+											<img src="../img/<%=img%>" width="30px" height="30px">
+										</td>
+										<td>
+											<b><%=adver.COMNAME%></b><br/>
+											광고명 : <%=adver.AD_NAME%><br/>
+											제휴기간 : <%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%> [<%=diffmonth%>] <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %><br/>
+											<br/>
+											<% if(flag == "N") { %><button type="button" class="btn btn-success" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
+													 <button type="button" class="btn btn-danger" onclick="approval('N', '<%=adver.RCODE%>')"">제휴거절</button>
+											<% } else if(flag=="Y" || flag=="C" ) { %> <button type="button" class="btn btn-warning" onclick="approval('', '<%=adver.RCODE%>')"">제휴처리취소</button><% }%>
+										</td>
+									</tr>
+ <%} %> 
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+<!-- 
 	<div id="categoryCoreDiv">
 	<table width="100%" border="1"  style="border: 1px;border-color: #204D74;">
 	<colgroup>
@@ -48,7 +129,7 @@ function approval(flag, rcode){
 		<td colspan="2" align="center"  style="padding-right: 100px;"><h5><b><u>광고내용</u></h5></td>
 		<td rowspan="2" align="center" ><h5><b><u>광고기간</h5></td>
 		<td rowspan="2" align="center" ><h5><b><u>제휴기간</h5></td>
-		<td rowspan="2" align="center" ><h5><b><u>선택</h5></td>
+		<td rowspan="2" align="center" ><h5><b><u>제휴처리</h5></td>
 	</tr>
 	<tr  style="background-color: #B1DB4E">
 		<td align="center" ><h5><b><u>Title</h5></td>
@@ -92,6 +173,7 @@ function approval(flag, rcode){
 	
 </table>
 </div>
+-->
 </form>
 </body>
 </html>
