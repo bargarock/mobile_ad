@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+  <link rel="stylesheet" href="/css/setAdver.css">
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script type='text/javascript'>
+$(function(){
+	$('.input-daterange').datepicker({
+	    autoclose: true,
+	    format: 'yyyy/mm/dd'    	
+	});
+	});
+	
+$(function() {	
+    $('#add').click(function() {
+    	 // clone
+        $.trClone = $("#mytable tr:last").clone().html();
+        $.newTr = $("<tr>"+$.trClone+"</tr>");
+        // append
+        $("#mytable").append($.newTr);
+    });
+    $('#del').click(function() {
+    		  var $obj = $("input[name='chk']");
+    		  var checkCount = $obj.size();
+    		  for (var i=0; i<checkCount; i++){
+    		   if($obj.eq(i).is(":checked")){
+    		   $obj.eq(i).parent().parent().remove();
+    		   }
+    		  }
+    });
+});
+
+
+	function chgAddImg(value) {
+		var chgImg = value;
+		
+		document.getElementById("myimg").src = chgImg;
+	}
+	
+	function chgTitle() {
+		var chgT = "";
+		chgT += "<h4><strong>";
+		chgT += document.getElementById("addTitle").value;
+		chgT += "</strong></h4>";
+		
+		document.getElementById("titlePrev").innerHTML = chgT;
+	}
+	
+	function chgContent() {
+		var chgC = "";
+		chgC += "<p>";
+		chgC += document.getElementById("addContent").value;
+		chgC += "</p>";
+		
+		document.getElementById("contentPrev").innerHTML = chgC;
+	}
+</script>
+
+ 
+  
+<title>광고하기</title>
+</head>
+<body style="margin-left: 10%; margin-right: 10%">
+	<form name="adver" method="post" action="/adver_reg">
+	<input type="hidden" name="company" id="company" value="A001"/>
+	<br>
+	<div id="userdiv">
+		<img src="../img/samsunghospital.jpg" width="50px" height="50px"> 삼성서울병원 담당자 정진욱님
+	</div>
+	<br>
+	
+	<div id="addInformationDiv">
+		<h1><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;광고 내용 입력</h1>
+		<span><button type="button" class="btn btn-success" onclick="submit();">저장</button></span>
+		<hr>
+		
+		<div id="addInputDiv">
+			<label>광고내용</label>
+			<div class="input-group">
+				<span class="input-group-addon">제목</span>
+				<input id="addTitle" type="text" class="form-control" placeholder="광고 제목 입력" onchange="chgTitle();" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon">내용</span>
+				<input id="addContent" type="text" class="form-control" placeholder="광고 내용 입력" onchange="chgContent();" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<label>광고단가</label>
+			<div id="selectbox">
+			    <select id="ex_select">
+			        <option selected>단가 선택</option>
+			        <option>1개월 12만원</option>
+			        <option>3개월 30만원</option>
+			        <option>6개월 48만원</option>
+			    </select>
+			</div>
+			<br>
+			<label>광고기간</label>
+			<div class="input-daterange input-group" id="datepicker" name="datepicker" >
+			    <input name="from" type="date" class="input-sm form-control" name="from" placeholder="From date" />
+			    <span class="input-group-addon">to</span>
+			    <input name="to" type="date" class="input-sm form-control" name="to" placeholder="To date"/>
+			</div>
+			<br>
+			<label>광고이미지 선택</label>
+			<div id="selectbox">
+			    <select id="ex_select" onchange="chgAddImg(value);">
+			        <option value="../img/emptyImage.jpg" selected>광고이미지 선택</option>
+			        <option value="../img/healthcheck.jpg">제주도이벤트</option>
+			        <option value="../img/healthcheck2.jpg">할인이벤트</option>
+			    </select>
+			</div>
+		</div>
+		<div class="addPreviewDiv">
+			<label>미리보기</label>
+			<div class="media-left">
+				<img class="thumbnail" src="../img/samsunghospital.jpg" width="100px" height="100px">
+	        </div>
+	        <div class="media-body">
+	          <h3 class="media-heading">삼성 서울 병원</h3>
+	          <p>추천 소식</p>
+	        </div>
+	        <div class="thumbnail-wrapper">
+		        <div class="myThumbnail">
+		        	<img src="../img/emptyImage.jpg" id="myimg">
+		        </div>
+	        </div>
+	        <div id="titlePrev"></div>
+	        <div id="contentPrev"></div>
+		</div>
+	</div>
+
+	<div id="appSelectDiv" style="float: left;">
+		<h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;제휴 앱 선택</h1>
+		<hr>
+		<div id="categoryDiv">
+			<h3><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp;&nbsp;카테고리</h3>
+			<div class="well center-block">
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="건강" onclick="showAppList(value);">건강</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="SNS" onclick="showAppList(value);">SNS</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="쇼핑" onclick="showAppList(value);">쇼핑</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="게임" onclick="showAppList(value);">게임</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="여행" onclick="showAppList(value);">여행</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="음악" onclick="showAppList(value);">음악</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="영화" onclick="showAppList(value);">영화</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="배달" onclick="showAppList(value);">배달</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" name="category" value="금융" onclick="showAppList(value);">금융</button>
+			</div>
+		</div>
+		<div class="categoryAppDiv" id="healthDiv">
+			<div class="list-group">
+				<div class="mylist-group-item">
+					<div class="media-left">
+						<img class="thumbnail" src="../img/healthplustalk.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">헬스 플러스 톡</h3>
+			          <p>전문가에게 직접 물어보기, S헬스 App.에 8개의 건강데이터를 통하여 건강을 관리</p>
+			        </div>
+			    </div>
+			    <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/googlefitness.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">Google Fitness</h3>
+			          <p>스마트폰, 태블릿, 웹, 스마트 시계 등 언제 어디서나 건강 상태를 확인 가능</p>
+			        </div>
+		        </div>
+		        <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/nikerun.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">Nike Run</h3>
+			          <p>러닝에 대한 모든 정보를 기록하여 이를 토대로 맞춤형 코칭 플랜 제공</p>
+			        </div>
+		        </div>
+		        <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/Shealth.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">S헬스</h3>
+			          <p>개인 프로필에 따른 권장 운동량을 추천하여 목표 설정에 도움을 제공, 다양한 건강뉴스 제공</p>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="categoryAppDiv" id="snsDiv">
+			<div class="list-group">
+				<div class="mylist-group-item">
+					<div class="media-left">
+						<img class="thumbnail" src="../img/cacao.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">카카오톡</h3>
+			          <p>대한민국 대표 메신저 서비스, 멀티미디어전송, 보이스톡, 연상통화, 카카오페이 등 다양한 편의기능 제공</p>
+			        </div>
+			    </div>
+			    <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/facebook.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">Facebook</h3>
+			          <p>전세계 13억 5천만명 이상의 사람들이 사용하는 앱, 일상을 공유하며 좋아하는 브랜드의 최신 소식을 바로 받아볼 수 있음</p>
+			        </div>
+		        </div>
+		        <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/snapchat.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">Snapchat</h3>
+			          <p>러닝에 대한 모든 정보를 기록하여 이를 토대로 맞춤형 코칭 플랜 제공</p>
+			        </div>
+		        </div>
+		        <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/instagram.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">Instagram</h3>
+			          <p>세상의 소중한 순간을 포착하여 손쉽게 공유할 수 있는 앱입니다. 5억 명이 넘는 사람들과 함께 일상의 크고 작은 다양한 순간들을 나만의 스타일로 공유할 수 있습니다.</p>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="categoryAppDiv" id="shopDiv">
+			<div class="list-group">
+				<div class="mylist-group-item">
+					<div class="media-left">
+						<img class="thumbnail" src="../img/11street.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">11번가</h3>
+			          <p>SK플래닛의 인터넷 쇼핑 앱</p>
+			        </div>
+			    </div>
+			    <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/auction.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">옥션</h3>
+			          <p>올킬, 스마트배송, 당일배송의 다양한 쇼핑의 편리함을 제공</p>
+			        </div>
+		        </div>
+		        <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/coupang.jpg" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">쿠팡</h3>
+			          <p>맞춤 상품 추천 및 자체 배송 서비스</p>
+			        </div>
+		        </div>
+		        <div class="mylist-group-item"> 
+			        <div class="media-left">
+						<img class="thumbnail" src="../img/gmarket.png" width="100px" height="100px">
+			        </div>
+			        <div class="media-body">
+			          <h3 class="media-heading">G마켓</h3>
+			          <p>최신 트렌드를 반영한 베스트 100, 일일 특가코너 슈퍼딜, 매일매일 혜택제공 출석체크</p>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		
+	</div>
+
+<script type="text/javascript">
+	function showAppList(value) {
+		
+		if(value == "건강") {
+			document.getElementById("healthDiv").style.display = "block";
+			document.getElementById("snsDiv").style.display = "none";
+			document.getElementById("shopDiv").style.display = "none";
+		} else if(value == "SNS") {
+			document.getElementById("healthDiv").style.display = "none";
+			document.getElementById("snsDiv").style.display = "block";
+			document.getElementById("shopDiv").style.display = "none";
+		} else if(value == "쇼핑") {
+			document.getElementById("healthDiv").style.display = "none";
+			document.getElementById("snsDiv").style.display = "none";
+			document.getElementById("shopDiv").style.display = "block";
+		}/*  else {
+			alert(value);
+			document.getElementById("healthDiv").style.display = "none";
+			document.getElementById("snsDiv").style.display = "none";
+			document.getElementById("shopDiv").style.display = "none";
+		} */
+	}
+</script>
+</form>
+</body>
+</html>
