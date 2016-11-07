@@ -87,17 +87,17 @@ $(function() {
 			<label>광고내용</label>
 			<div class="input-group">
 				<span class="input-group-addon">제목</span>
-				<input id="addTitle" type="text" class="form-control" placeholder="광고 제목 입력" onchange="chgTitle();" aria-describedby="basic-addon1">
+				<input id="addTitle" name="addTitle" type="text" class="form-control" placeholder="광고 제목 입력" onchange="chgTitle();" aria-describedby="basic-addon1">
 			</div>
 			<br>
 			<div class="input-group">
 				<span class="input-group-addon">내용</span>
-				<input id="addContent" type="text" class="form-control" placeholder="광고 내용 입력" onchange="chgContent();" aria-describedby="basic-addon1">
+				<input id="addContent"  name="addContent" type="text" class="form-control" placeholder="광고 내용 입력" onchange="chgContent();" aria-describedby="basic-addon1">
 			</div>
 			<br>
 			<label>광고단가</label>
 			<div id="selectbox">
-			    <select id="ex_select">
+			    <select id="cost" name="cost">
 			        <option selected>단가 선택</option>
 			        <option>1개월 12만원</option>
 			        <option>3개월 30만원</option>
@@ -107,14 +107,14 @@ $(function() {
 			<br>
 			<label>광고기간</label>
 			<div class="input-daterange input-group" id="datepicker" name="datepicker" >
-			    <input name="from" type="date" class="input-sm form-control" name="from" placeholder="From date" />
+			    <input name="d_from" type="text" class="input-sm form-control" placeholder="From date" />
 			    <span class="input-group-addon">to</span>
-			    <input name="to" type="date" class="input-sm form-control" name="to" placeholder="To date"/>
+			    <input name="d_to" type="text" class="input-sm form-control" placeholder="To date"/>
 			</div>
 			<br>
 			<label>광고이미지 선택</label>
 			<div id="selectbox">
-			    <select id="ex_select" onchange="chgAddImg(value);">
+			    <select id="img"  name="img" onchange="chgAddImg(value);">
 			        <option value="../img/emptyImage.jpg" selected>광고이미지 선택</option>
 			        <option value="../img/healthcheck.jpg">제주도이벤트</option>
 			        <option value="../img/healthcheck2.jpg">할인이벤트</option>

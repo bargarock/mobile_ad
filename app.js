@@ -88,14 +88,20 @@ app.get('/setBeacon',function(req,res){
 app.post('/adver_reg', function(req,res){
 
 	  var company = req.body.company;
-	  var title = req.body.title;
-	  var content = req.body.content;
-	  var exposure = req.body.exposure;
-	  var execute = req.body.execute;
-	  var from = req.body.from;
-	  var to = req.body.to;
-	  var chk = req.body.chk;
+	  var title = req.body.addTitle;
+	  var content = req.body.addContent;
+	  var cost = req.body.cost;
+	 // var execute = req.body.execute;
+	  var from = req.body.d_from;
+	  var to = req.body.d_to;
+	  //var chk = req.body.chk;
 	  var AppCompany = "C001"; //앱 관리 회사 (헬스플러스톡)
+	  var img = req.body.img;
+	  
+	  console.log(company + " " + title + " " + content + " " + cost );
+	  console.log(from + " " +  to + " " );
+	  console.log(img );
+	  console.log(AppCompany + " ");
 
 	  pool.getConnection(function (err, connection)
 	  {
@@ -110,8 +116,8 @@ app.post('/adver_reg', function(req,res){
 	        	
 	        	//광고하기테이블(광고detail) 저장
 	        	var sqlForInsertAdver = "insert into TB_AD_DETAIL(AD_CODE, AD_NAME, AD_CONTENT," +
-	        										"AD_MSG, AD_URL, AD_TYPE, AD_START_DATE, AD_END_DATE) values (?,?,?,?,?,?,?,?)";
-	    	    var datas = [maxAdCode, title, content, content, adUrl, exposure, from,to];
+	        										"AD_MSG, AD_URL, AD_TYPE, AD_START_DATE, AD_END_DATE, AD_IMG_URL) values (?,?,?,?,?,?,?,?,?)";
+	    	    var datas = [maxAdCode, title, content, content, adUrl, cost, from,to,img];
 	        	connection.query(sqlForInsertAdver, datas, function (err, rows) {
 	                if (err) console.error("err : " + err);
 	        	});
