@@ -1,5 +1,7 @@
 body{
-    background: #B1DB4E;
+    background: url("/img/topBg2.jpg");
+    background-repeat: no-repeat;
+    
 }
 .navbar, .dropdown-menu{
 background:rgba(177,219,78,210);
