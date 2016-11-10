@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--Script Reference[1]-->
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script src="https://cdn.zingchart.com/zingchart.jquery.min.js"></script>
+</head>
+<body>
+  <!--Chart Placement[2]-->
+  <table>
+	<tr>
+		<td colspan="4" align="center">
+		<font style="font-size:40pt">오프라인 업체</font>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<font style="font-size:20pt">Category 별</font><br/><br/>
+			<label for="radioA1"><input type="radio" name="hospitals" checked="checked" id="hospitals" value="1"/>병원</label>
+			<br/>
+			<label for="radioA2"><input type="radio" name="coffee" id="coffee" value="2"/>카페</label>
+			<br/>
+			<label for="radioA3"><input type="radio" name="shops" id="shops" value="3"/>잡화</label>
+			<br/>
+			<label for="radioA4"><input type="radio" name="elec" id="elec" value="4"/>전자제품</label>
+			<br/>
+		</td>
+		<td>
+			<div id="viewCntChart"></div>
+			<font style="font-size:10pt">※각 노드를 클릭하면 App별 Chart를 볼 수 있습니다.</font>
+		</td>
+		<td>
+			<div id="clickCntChart"></div>
+		</td>
+		<td>
+			<font style="color:blue">●</font> 건강관리<br/>
+			<font style="color:red">●</font> 미용<br/>
+			<font style="color:green">●</font> SNS
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Offline : 병원<br/>
+			App : 건강관리<br/>
+			기준 : 노출<br/>
+			기간 : 2016 / 11<br/>
+		</td>
+		<td>
+			<div id="detailChart"></div>
+			<font style="font-size:10pt">※각 영역을 클릭하면 상세 광고 실적을 볼 수 있습니다.</font>
+		</td>
+		<td colspan="2">
+		상세 광고 실적 Data
+		<table border="1px">
+		<tr>
+			<td>App명</td>
+			<td>업체명</td>
+			<td>광고 Title</td>
+			<td>광고 Contents</td>
+			<td>노출</td>
+			<td>클릭</td>
+			<td>수익</td>
+		</tr>
+		<tr>
+			<td>헬스플러스톡</td>
+			<td>강북삼성병원</td>
+			<td>건강검짐</td>
+			<td>11월 건강검진 특가...</td>
+			<td>201</td>
+			<td>120</td>
+			<td>43,800원</td>
+		</tr>
+		<tr>
+			<td>헬스플러스톡</td>
+			<td>강북삼성병원</td>
+			<td>치과치료</td>
+			<td>지금 강북삼성병원 치과...</td>
+			<td>100</td>
+			<td>84</td>
+			<td>21,400원</td>
+		</tr>
+		<tr>
+			<td>헬스플러스톡</td>
+			<td>강북삼성병원</td>
+			<td>재방문특가</td>
+			<td>다시 한번 방문해주신...</td>
+			<td>100</td>
+			<td>33</td>
+			<td>5,600원</td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+  </table>
+  <script>
+  $(document).ready(function() {
+  $("#viewCntChart").zingchart({
+    "data":{
+      "type": "line",
+	  "scale-x":{
+      "values":"7:11:1",
+      "format":"2016년 %v월"
+      },
+	  "scale-y":{
+      "values":"0:700:100",
+      "format":"%v건"
+      },
+	  "title": {
+        "text": "광고 노출 건 수" // Adds a title to your chart
+      },
+      "series": [
+        { "values": [300,340,391,602,651],
+		  "line-color": "blue",
+		  "marker": {
+			"background-color": "blue"
+		  }
+		},
+		{ "values": [120,213,172,202,254],
+          "line-color": "red",
+		  "marker": {
+			"background-color": "red"
+		  }		
+		},
+		{ "values": [90,118,102,154,141], 
+		  "line-color": "green",
+		  "marker": {
+			"background-color": "green"
+		  }	
+		}
+      ]
+    },
+	"height": 250,
+    "width": 400
+  });
+  })
+  $(document).ready(function() {
+  $("#clickCntChart").zingchart({
+    "data":{
+      "type": "line",
+	  "scale-x":{
+      "values":"7:11:1",
+      "format":"2016년 %v월"
+      },
+	  "scale-y":{
+      "values":"0:700:100",
+      "format":"%v건"
+      },
+	  "title": {
+        "text": "광고 클릭 건 수" // Adds a title to your chart
+      },
+      "series": [
+        { "values": [159,278,324,402,581],
+		  "line-color": "blue",
+		  "marker": {
+			"background-color": "blue"
+		  }
+		},
+		{ "values": [90,163,162,182,194],
+          "line-color": "red",
+		  "marker": {
+			"background-color": "red"
+		  }		
+		},
+		{ "values": [50,68,69,72,52], 
+		  "line-color": "green",
+		  "marker": {
+			"background-color": "green"
+		  }	
+		}
+      ]
+    },
+	"height": 250,
+    "width": 400
+  });
+  })
+    $(document).ready(function() {
+  $("#detailChart").zingchart({
+    "data":{
+      "type": "bar",
+	  "legend":{
+    
+	  },
+	  "scale-x":{
+        "values":"0:0:0",
+        "format":"2016년 11월"
+      },
+	  "scale-y":{
+        "values":"0:700:100",
+        "format":"%v건"
+      },
+	  "plot": {
+        "value-box": {
+        "text": "%node-value"
+        }
+      },
+      "series": [
+        { "values": [401],
+		  "text": "헬스플러스톡" },
+		{ "values": [150],
+		  "text": "S헬스" },
+		{ "values": [101],
+		  "text": "서울삼성병원APP" }
+      ]
+    },
+	"height": 250,
+    "width": 400
+  });
+  })
+  </script>
+</body>
+</html>

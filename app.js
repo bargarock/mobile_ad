@@ -84,6 +84,10 @@ app.get('/setBeacon',function(req,res){
 	  res.render(path.join(__dirname+'/views/setBeacon.html'));
 });
 
+app.get('/offlineUserChart',function(req,res){
+	  res.render(path.join(__dirname+'/views/offlineUserChart.html'));
+});
+
 
 app.post('/adver_reg', function(req,res){
 
