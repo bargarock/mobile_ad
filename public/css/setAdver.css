@@ -114,7 +114,7 @@ body{
 
 label{
 	color: #FFFFFF;
-	background-color: #232F3F;
+	background-color: #9144BE;
 	border-color: #D6E9C6;
 	padding: 5px;
 	margin-bottom: 20px;
@@ -124,7 +124,7 @@ label{
 }
 
 hr{
-	border: #232F3F 3px solid;
+	border: #EBB5D7 3px solid;
 }
 
 .myThumbnail{
