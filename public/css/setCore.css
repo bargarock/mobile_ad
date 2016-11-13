@@ -18,6 +18,8 @@ body {
 	font-weight: bold;
 }
 
+/* -------------------------------------------------- :: Button -------------------------------------------------- */ .btnapproval {  color: #fff;  background-color: #A454C7;  border-color: #A454C7;}.btnapproval:hover,.btnapproval:focus{  color: #fff;  background-color: #D053C2;  border-color: #D053C2;}.btnreject {  color: #fff;  background-color: #3A13C1;  border-color: #3A13C1;}.btnreject:hover,.btnreject:focus{  color: #fff;  background-color: #6C47ED;  border-color: #6C47ED;}.btncancel {  color: #fff;  background-color: #E184C2;  border-color: #E184C2;}.btncancel:hover,.btncancel:focus{  color: #fff;  background-color: #D874B7;  border-color: #D874B7;}
+
 /*	--------------------------------------------------
 	:: Table Filter
 	-------------------------------------------------- */
