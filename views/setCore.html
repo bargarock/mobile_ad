@@ -99,9 +99,9 @@ function popAdver(adverCode){
 											광고내용 : <%=adver.AD_CONTENT%><br/>
 											제휴기간 : <%=adver.AD_START_DATE%> ~ <%=adver.AD_END_DATE%> [<%=diffmonth%>] <% if(flag=="Y"){ %> <b>(제휴중)</b> <% } if(flag=="C") {%> <b>(제휴취소)</b> <%} if(flag=="N") {%> <b>(미승인)</b> <% } %><br/>
 											<br/>
-											<% if(flag == "N") { %><button type="button" class="btn btn-success" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
-													 <button type="button" class="btn btn-danger" onclick="approval('N', '<%=adver.RCODE%>')"">제휴거절</button>
-											<% } else if(flag=="Y" || flag=="C" ) { %> <button type="button" class="btn btn-warning" onclick="approval('', '<%=adver.RCODE%>')"">제휴처리취소</button><% }%>
+											<% if(flag == "N") { %><button type="button" class="btn btnapproval" onclick="approval('Y', '<%=adver.RCODE%>')"">제휴승인</button>  
+													 <button type="button" class="btn btnreject" onclick="approval('N', '<%=adver.RCODE%>')"">제휴거절</button>
+											<% } else if(flag=="Y" || flag=="C" ) { %> <button type="button" class="btn btncancel" onclick="approval('', '<%=adver.RCODE%>')"">제휴처리취소</button><% }%>
 										</td>
 										<td><img src="<%=adver.IMG%>" onclick="popAdver('<%=adver.IMG%>')"  data-toggle="modal" data-target=".pop-up-1" width="100px;" height="100px;"   /></td>
 									</tr>
