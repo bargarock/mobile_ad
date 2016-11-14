@@ -43,6 +43,10 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/home',function(req,res){
+	  res.render('login');
+});
+
 app.get('/login',function(req,res){
 	  res.render(path.join(__dirname+'/views/index.html'));
 });
