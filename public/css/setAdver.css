@@ -157,13 +157,13 @@ hr{
 
 .selectbox {
   position: relative;
-  width: 200px;  /* ³Êºñ¼³Á¤ */
-  border: 1px solid #999;  /* Å×µÎ¸® ¼³Á¤ */
+  width: 200px;  /* ë„ˆë¹„ì„¤ì • */
+  border: 1px solid #999;  /* í…Œë‘ë¦¬ ì„¤ì • */
   z-index: 1;
-  -webkit-appearance: none; /* ³×ÀÌÆ¼ºê ¿ÜÇü °¨Ãß±â */
+  -webkit-appearance: none; /* ë„¤ì´í‹°ë¸Œ ì™¸í˜• ê°ì¶”ê¸° */
 }
 
-.selectbox:before {  /* È­»ìÇ¥ ´ëÃ¼ */
+.selectbox:before {  /* í™”ì‚´í‘œ ëŒ€ì²´ */
   content: "";
   position: absolute;
   top: 50%;
@@ -178,23 +178,23 @@ hr{
 
 .selectbox label {
   position: absolute;
-  top: 1px;  /* À§Ä¡Á¤·Ä */ 
-  left: 5px;  /* À§Ä¡Á¤·Ä */
-  padding: .8em .5em;  /* selectÀÇ ¿©¹é Å©±â ¸¸Å­ */
+  top: 1px;  /* ìœ„ì¹˜ì •ë ¬ */ 
+  left: 5px;  /* ìœ„ì¹˜ì •ë ¬ */
+  padding: .8em .5em;  /* selectì˜ ì—¬ë°± í¬ê¸° ë§Œí¼ */
   color: #999;  
-  z-index: -1;  /* IE8¿¡¼­ labelÀÌ À§Ä¡ÇÑ °÷ÀÌ Å¬¸¯µÇÁö ¾Ê´Â °Í ÇØ°á */
+  z-index: -1;  /* IE8ì—ì„œ labelì´ ìœ„ì¹˜í•œ ê³³ì´ í´ë¦­ë˜ì§€ ì•ŠëŠ” ê²ƒ í•´ê²° */
 }
 
 .selectbox select {
   width: 100%; 
-  height: auto;  /* ³ôÀÌ ÃÊ±âÈ­ */
-  line-height: normal;  /* line-height ÃÊ±âÈ­ */
-  font-family: inherit;  /* ÆùÆ® »ó¼Ó */
-  padding: .8em .5em;  /* ¿©¹é°ú ³ôÀÌ °áÁ¤ */
+  height: auto;  /* ë†’ì´ ì´ˆê¸°í™” */
+  line-height: normal;  /* line-height ì´ˆê¸°í™” */
+  font-family: inherit;  /* í°íŠ¸ ìƒì† */
+  padding: .8em .5em;  /* ì—¬ë°±ê³¼ ë†’ì´ ê²°ì • */
   border: 0;
-  opacity: 0;  /* ¼û±â±â */
-  filter:alpha(opacity=0);  /* IE8 ¼û±â±â */
-  -webkit-appearance: none; /* ³×ÀÌÆ¼ºê ¿ÜÇü °¨Ãß±â */
+  opacity: 0;  /* ìˆ¨ê¸°ê¸° */
+  filter:alpha(opacity=0);  /* IE8 ìˆ¨ê¸°ê¸° */
+  -webkit-appearance: none; /* ë„¤ì´í‹°ë¸Œ ì™¸í˜• ê°ì¶”ê¸° */
   -moz-appearance: none;
   appearance: none;
 }
@@ -229,9 +229,9 @@ hr{
 }
 
 /*	--------------------------------------------------
-	:: ´ë½Ãº¸µå CSS
+	:: ëŒ€ì‹œë³´ë“œ CSS
 	-------------------------------------------------- */
-#chartCategoryDiv{
+.chartCategoryDiv{
 	background: #fefffd;
 	border: #959595 1px solid;
 	border-top-left-radius: 10px 10px;
@@ -241,6 +241,19 @@ hr{
 	margin: 3px;
 	margin-bottom: 20px;
 	padding: 10px;
+	height: 100%;
+}
+
+.chartDiv{Â 
+	background: #fefffd;Â 
+	border: #959595 1px solid;Â 
+	border-top-left-radius: 10px 10px;Â 
+	border-top-right-radius: 10px 10px;Â 
+	border-bottom-left-radius: 10px 10px;Â 
+	border-bottom-right-radius: 10px 10px;Â 
+	margin: 3px;Â 
+	margin-bottom: 120px;Â 
+	padding: 10px;Â 
 	height: 100%;
 }
 
