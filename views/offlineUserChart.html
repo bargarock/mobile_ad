@@ -35,8 +35,8 @@
 		<table>
 		<tr>
 			<td>
-				<div id="viewCntChart" style="width: 300px"></div>
-				<div id="viewCntChart2" style="display:none;"></div>
+				<div id="viewCntChart"></div>
+				<div id="viewCntChart2" style="display:none"></div>
 				<font style="font-size:10pt">※각 노드를 클릭하면 App별 Chart를 볼 수 있습니다.</font>
 			</td>
 			<td>
@@ -237,12 +237,6 @@
 		document.getElementById("viewCntChart2").style.display = "none";	
 		document.getElementById("clickCntChart2").style.display = "none";	
 		document.getElementById("appCategory").style.visibility = "visible";
-		
-
-		document.getElementById("viewCntChart").style.width = "300px";	
-		document.getElementById("viewCntChart2").style.width = "300px";	
-		document.getElementById("clickCntChart").style.width = "300px";	
-		document.getElementById("clickCntChart2").style.width = "300px";	
   });
   
   $("input[name=coffee]").change(function() {
@@ -259,11 +253,6 @@
 		document.getElementById("viewCntChart2").style.display = "block";	
 		document.getElementById("clickCntChart2").style.display = "block";	
 		document.getElementById("appCategory").style.visibility = "hidden";
-		
-		document.getElementById("viewCntChart").style.width = "300px";	
-		document.getElementById("viewCntChart2").style.width = "300px";
-		document.getElementById("clickCntChart").style.width = "300px";	
-		document.getElementById("clickCntChart2").style.width = "300px";	
   });
   
   $("input[name=shops]").change(function() {
@@ -280,11 +269,6 @@
 		document.getElementById("viewCntChart2").style.display = "block";	
 		document.getElementById("clickCntChart2").style.display = "block";
 		document.getElementById("appCategory").style.visibility = "hidden";
-
-		document.getElementById("viewCntChart").style.width = "300px";	
-		document.getElementById("viewCntChart2").style.width = "300px";
-		document.getElementById("clickCntChart").style.width = "300px";	
-		document.getElementById("clickCntChart2").style.width = "300px";	
   });
   
   $("input[name=elec]").change(function() {
@@ -301,11 +285,6 @@
 		document.getElementById("viewCntChart2").style.display = "block";	
 		document.getElementById("clickCntChart2").style.display = "block";
 		document.getElementById("appCategory").style.visibility = "hidden";
-
-		document.getElementById("viewCntChart").style.width = "300px";	
-		document.getElementById("viewCntChart2").style.width = "300px";
-		document.getElementById("clickCntChart").style.width = "300px";	
-		document.getElementById("clickCntChart2").style.width = "300px";	
   });
   
   $(document).ready(function() {
@@ -345,7 +324,7 @@
       ]
     },
 	"height": 250,
-    "width": 400
+    "width": 350
   });
   })
   
@@ -368,7 +347,7 @@
       ]
     },
 	"height": 250,
-    "width": 400
+    "width": 350
   });
   })
   
@@ -409,7 +388,7 @@
       ]
     },
 	"height": 250,
-    "width": 400
+    "width": 350
   });
   })
   
@@ -432,7 +411,7 @@
       ]
     },
 	"height": 250,
-    "width": 400
+    "width": 350
   });
   })
   $(document).ready(function() {
@@ -464,7 +443,7 @@
       ]
     },
 	"height": 250,
-    "width": 400
+    "width": 350
   });
   })
   $(document).ready(function() {
@@ -493,7 +472,7 @@
       ]
     },
 	"height": 250,
-    "width": 400
+    "width": 350
   });
   })
   zingchart.bind('viewCntChart','node_click', function(e) {	
@@ -845,7 +824,7 @@
 	      id: "chartDiv1",
 	      data: chartData1,
 	      height: 400,
-	      width: 500
+	      width: 350
 	    });
 	    
 	    seoul();
@@ -890,7 +869,7 @@
 	      id: "chartDiv2",
 	      data: chartData2,
 	      height: 400,
-	      width: 400
+	      width: 350
 	    });   
 
 	  }
@@ -912,7 +891,7 @@
 	      id: "chartDiv2",
 	      data: chartData2,
 	      height: 400,
-	      width: 400
+	      width: 350
 	    });   
 
 	  }
@@ -934,7 +913,7 @@
 	      id: "chartDiv2",
 	      data: chartData2,
 	      height: 400,
-	      width: 400
+	      width: 350
 	    });   
 
 	  }
@@ -956,7 +935,7 @@
 	      id: "chartDiv2",
 	      data: chartData2,
 	      height: 400,
-	      width: 400
+	      width: 350
 	    });   
 
 	  }
