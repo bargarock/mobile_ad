@@ -36,7 +36,7 @@
 		<tr>
 			<td>
 				<div id="viewCntChart" style="width: 95%"></div>
-				<div id="viewCntChart2" style="display:none; width: 95%;"></div>
+				<div id="viewCntChart2" style="display:none;"></div>
 				<font style="font-size:10pt">※각 노드를 클릭하면 App별 Chart를 볼 수 있습니다.</font>
 			</td>
 			<td>
@@ -237,6 +237,10 @@
 		document.getElementById("viewCntChart2").style.display = "none";	
 		document.getElementById("clickCntChart2").style.display = "none";	
 		document.getElementById("appCategory").style.visibility = "visible";
+		
+
+		document.getElementById("viewCntChart").style.width = "95%";	
+		document.getElementById("viewCntChart2").style.width = "95%";	
   });
   
   $("input[name=coffee]").change(function() {
@@ -253,6 +257,9 @@
 		document.getElementById("viewCntChart2").style.display = "block";	
 		document.getElementById("clickCntChart2").style.display = "block";	
 		document.getElementById("appCategory").style.visibility = "hidden";
+		
+		document.getElementById("viewCntChart").style.width = "95%";	
+		document.getElementById("viewCntChart2").style.width = "95%";
   });
   
   $("input[name=shops]").change(function() {
@@ -269,6 +276,9 @@
 		document.getElementById("viewCntChart2").style.display = "block";	
 		document.getElementById("clickCntChart2").style.display = "block";
 		document.getElementById("appCategory").style.visibility = "hidden";
+
+		document.getElementById("viewCntChart").style.width = "95%";	
+		document.getElementById("viewCntChart2").style.width = "95%";
   });
   
   $("input[name=elec]").change(function() {
@@ -285,6 +295,9 @@
 		document.getElementById("viewCntChart2").style.display = "block";	
 		document.getElementById("clickCntChart2").style.display = "block";
 		document.getElementById("appCategory").style.visibility = "hidden";
+
+		document.getElementById("viewCntChart").style.width = "95%";	
+		document.getElementById("viewCntChart2").style.width = "95%";
   });
   
   $(document).ready(function() {
